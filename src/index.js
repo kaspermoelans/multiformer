@@ -5,7 +5,6 @@ const { Server } = require("socket.io");
 
 const app = express()
 const httpServer = createServer(app);
-const PORT = process.env.PORT || 5000;
 
 const io = new Server(httpServer);
 
@@ -65,33 +64,33 @@ return false;
 }
 
 function tick(delta) {
-    for (const player of players) {
+    for (let player of players) {
         const inputs = inputsMap[player.id]
         const previousY = player.y
         const previousX = player.x
 
-        player.y += player.speed.y
+        player.y += player.speedY
 
         if (isCollidingWithMap(player)) {
             player.y = previousY
             if (inputs.up) {
-                player.speed.y = player.speed.jump
+                player.speedY = player.speedJump
             }
-            if (player.speed.y > 5) {
-                player.speed.y = 5
+            if (player.speedY > 5) {
+                player.speedY = 5
             }
         }
 
-        player.speed.y += 1
+        player.speedY += 1
 
         if (inputs.left) {
-            player.x -= player.speed.x
+            player.x -= player.speedX
         } else if (inputs.right) {
-            player.x += player.speed.x
+            player.x += player.speedX
         }
 
         if (isCollidingWithMap(player)) {
-            player.x = previousX
+            playerX = previousX
         }
     }
     io.emit('players', players)
@@ -114,7 +113,9 @@ async function main() {
             id: socket.id,
             x: 50,
             y: 3500,
-            speed: SPEED
+            speedX: 5,
+            speedY: 5,
+            speedJump: -12
         })
 
         socket.emit('map', map2D)
@@ -130,7 +131,7 @@ async function main() {
     
     app.use(express.static("public"))
     
-    httpServer.listen(PORT);
+    httpServer.listen(5000);
 
     let lastUpdate = Date.now()
     setInterval(() => {

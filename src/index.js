@@ -91,7 +91,7 @@ function tick(delta) {
         }
 
         if (isCollidingWithMap(player)) {
-            playerX = previousX
+            player.x = previousX
         }
     }
     io.emit('players', players)

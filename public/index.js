@@ -49,13 +49,13 @@ window.addEventListener('keydown', (e) => {
 })
 
 window.addEventListener('keyup', (e) => {
-    if (e.key === 'z') {
+    if (e.key === 'z' || e.key === 'ArrowUp' || e.key === 'Space') {
         inputs['up'] = false
-    } else if (e.key === 's') {
+    } else if (e.key === 's' || e.key === 'ArrowDown') {
         inputs['down'] = false
-    } else if (e.key === 'q') {
+    } else if (e.key === 'q' || e.key === 'ArrowLeft') {
         inputs['left'] = false
-    } else if (e.key === 'd') {
+    } else if (e.key === 'd' || e.key === 'ArrowRight') {
         inputs['right'] = false
     }
     socket.emit('inputs', inputs)

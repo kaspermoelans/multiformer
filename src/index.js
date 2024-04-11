@@ -19,6 +19,7 @@ const TILE_SIZE = 32
 let players = []
 let map2D
 const inputsMap = {}
+let skins = ["red_santa", "pink_santa", "banana", "tomato"]
 
 const SPEED = {
     x: 5,
@@ -86,12 +87,23 @@ function tick(delta) {
 
         if (inputs.left) {
             player.x -= player.speedX
+            player.direction = "left"
         } else if (inputs.right) {
             player.x += player.speedX
+            player.direction = "right"
         }
 
         if (isCollidingWithMap(player)) {
             player.x = previousX
+        }
+
+        if (inputs.switchSkin) {
+            player.skinNumber += 1
+            if (player.skinNumber > skins.length) {
+                player.skinNumber = 0
+            }
+            player.skin = skins[player.skinNumber]
+            inputsMap[player.id].switchSkin = false
         }
     }
     io.emit('players', players)
@@ -107,7 +119,8 @@ async function main() {
             up: false,
             down: false,
             left: false,
-            right: false
+            right: false,
+            switchSkin: false
         }
 
         players.push({
@@ -116,7 +129,10 @@ async function main() {
             y: 3500,
             speedX: 5,
             speedY: 5,
-            speedJump: -12
+            speedJump: -12,
+            skin: "red-santa",
+            skinNumber: 0,
+            direction: "right"
         })
 
         socket.emit('map', map2D)

@@ -26,11 +26,6 @@ canvasEl.width = window.innerWidth;
 canvasEl.height = window.innerHeight;
 const canvas = canvasEl.getContext("2d");
 
-const canvasEl = document.getElementById("canvas");
-canvasEl.width = window.innerWidth;
-canvasEl.height = window.innerHeight;
-const canvas = canvasEl.getContext("2d");
-
 const socket = io();
 
 let map = [[]];

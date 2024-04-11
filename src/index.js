@@ -97,6 +97,11 @@ function tick(delta) {
             player.x = previousX
         }
 
+        if (player.y > 4000) {
+            player.y = 3350
+            player.x = 2000
+        }
+
         if (inputs.switchSkin) {
             player.skinNumber += 1
             if (player.skinNumber > skins.length) {
@@ -125,8 +130,8 @@ async function main() {
 
         players.push({
             id: socket.id,
-            x: 50,
-            y: 3500,
+            x: 2000,
+            y: 3350,
             speedX: 5,
             speedY: 5,
             speedJump: -12,

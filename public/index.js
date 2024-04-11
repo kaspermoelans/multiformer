@@ -1,8 +1,30 @@
 const mapImage = new Image();
 mapImage.src = "/tiles.png";
 
-const santaImage = new Image();
-santaImage.src = "/santa.png";
+const right_red_santaImage = new Image();
+right_red_santaImage.src = "/right_red_santa.png";
+const left_red_santaImage = new Image();
+left_red_santaImage.src = "/left_red_santa.png";
+
+const right_pink_santaImage = new Image();
+right_pink_santaImage.src = "/right_pink_santa.png";
+const left_pink_santaImage = new Image();
+left_pink_santaImage.src = "/left_pink_santa.png";
+
+const right_bananaImage = new Image();
+right_bananaImage.src = "/right_banana.png";
+const left_bananaImage = new Image();
+left_bananaImage.src = "/left_banana.png";
+
+const right_tomatoImage = new Image();
+right_tomatoImage.src = "/right_tomato.png";
+const left_tomatoImage = new Image();
+left_tomatoImage.src = "/left_tomato.png";
+
+const canvasEl = document.getElementById("canvas");
+canvasEl.width = window.innerWidth;
+canvasEl.height = window.innerHeight;
+const canvas = canvasEl.getContext("2d");
 
 const canvasEl = document.getElementById("canvas");
 canvasEl.width = window.innerWidth;
@@ -32,7 +54,8 @@ const inputs = {
     up: false,
     down: false,
     left: false,
-    right: false
+    right: false,
+  switchSkin: false
 }
 
 window.addEventListener('keydown', (e) => {
@@ -44,6 +67,8 @@ window.addEventListener('keydown', (e) => {
         inputs['left'] = true
     } else if (e.key === 'd' || e.key === 'ArrowRight') {
         inputs['right'] = true
+    } else if (e.key === 'e') {
+      inputs['switchSkin'] = true
     }
     socket.emit('inputs', inputs)
 })
@@ -57,6 +82,8 @@ window.addEventListener('keyup', (e) => {
         inputs['left'] = false
     } else if (e.key === 'd' || e.key === 'ArrowRight') {
         inputs['right'] = false
+    } else if (e.key === 'e') {
+      inputs['switchSkin'] = false
     }
     socket.emit('inputs', inputs)
 })
@@ -98,7 +125,31 @@ function loop() {
   }
 
   for (const player of players) {
-    canvas.drawImage(santaImage, player.x - cameraX, player.y - cameraY)
+    if (player.direction === "left") {
+      if (player.skin === "red_santa") {
+        canvas.drawImage(left_red_santaImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "pink_santa") {
+        canvas.drawImage(left_pink_santaImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "banana") {
+        canvas.drawImage(left_bananaImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "tomato") {
+        canvas.drawImage(left_tomatoImage, player.x - cameraX, player.y - cameraY)
+      } else {
+        canvas.drawImage(left_red_santaImage, player.x - cameraX, player.y - cameraY)
+      }
+    } else if (player.direction === "right") {
+      if (player.skin === "red_santa") {
+        canvas.drawImage(right_red_santaImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "pink_santa") {
+        canvas.drawImage(right_pink_santaImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "banana") {
+        canvas.drawImage(right_bananaImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "tomato") {
+        canvas.drawImage(right_tomatoImage, player.x - cameraX, player.y - cameraY)
+      } else {
+        canvas.drawImage(right_red_santaImage, player.x - cameraX, player.y - cameraY)
+      }
+    }
   }
 
   window.requestAnimationFrame(loop);

@@ -19,7 +19,7 @@ const TILE_SIZE = 32
 let players = []
 let map2D
 const inputsMap = {}
-let skins = ["red_santa", "pink_santa", "banana", "tomato"]
+let skins = ["red_santa", "pink_santa", "banana", "tomato", "viking", "pink_dude", "white_dude", "blue_dude"]
 
 const SPEED = {
     x: 5,

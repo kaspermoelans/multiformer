@@ -21,6 +21,26 @@ right_tomatoImage.src = "/right_tomato.png";
 const left_tomatoImage = new Image();
 left_tomatoImage.src = "/left_tomato.png";
 
+const right_vikingImage = new Image();
+right_vikingImage.src = "/right_viking.png";
+const left_vikingImage = new Image();
+left_vikingImage.src = "/left_viking.png";
+
+const right_pink_dudeImage = new Image();
+right_pink_dudeImage.src = "/right_pink_dude.png";
+const left_pink_dudeImage = new Image();
+left_pink_dudeImage.src = "/left_pink_dude.png";
+
+const right_white_dudeImage = new Image();
+right_white_dudeImage.src = "/right_white_dude.png";
+const left_white_dudeImage = new Image();
+left_white_dudeImage.src = "/left_white_dude.png";
+
+const right_blue_dudeImage = new Image();
+right_blue_dudeImage.src = "/right_blue_dude.png";
+const left_blue_dudeImage = new Image();
+left_blue_dudeImage.src = "/left_blue_dude.png";
+
 const canvasEl = document.getElementById("canvas");
 canvasEl.width = window.innerWidth;
 canvasEl.height = window.innerHeight;
@@ -50,17 +70,17 @@ const inputs = {
     down: false,
     left: false,
     right: false,
-  switchSkin: false
+    switchSkin: false
 }
 
 window.addEventListener('keydown', (e) => {
-    if (e.key === 'z' || e.key === 'ArrowUp' || e.key === 'Space') {
+    if (e.key === 'z') {
         inputs['up'] = true
-    } else if (e.key === 's' || e.key === 'ArrowDown') {
+    } else if (e.key === 's') {
         inputs['down'] = true
-    } else if (e.key === 'q' || e.key === 'ArrowLeft') {
+    } else if (e.key === 'q') {
         inputs['left'] = true
-    } else if (e.key === 'd' || e.key === 'ArrowRight') {
+    } else if (e.key === 'd') {
         inputs['right'] = true
     } else if (e.key === 'e') {
       inputs['switchSkin'] = true
@@ -69,13 +89,13 @@ window.addEventListener('keydown', (e) => {
 })
 
 window.addEventListener('keyup', (e) => {
-    if (e.key === 'z' || e.key === 'ArrowUp' || e.key === 'Space') {
+    if (e.key === 'z') {
         inputs['up'] = false
-    } else if (e.key === 's' || e.key === 'ArrowDown') {
+    } else if (e.key === 's') {
         inputs['down'] = false
-    } else if (e.key === 'q' || e.key === 'ArrowLeft') {
+    } else if (e.key === 'q') {
         inputs['left'] = false
-    } else if (e.key === 'd' || e.key === 'ArrowRight') {
+    } else if (e.key === 'd') {
         inputs['right'] = false
     } else if (e.key === 'e') {
       inputs['switchSkin'] = false
@@ -129,6 +149,14 @@ function loop() {
         canvas.drawImage(left_bananaImage, player.x - cameraX, player.y - cameraY)
       } else if (player.skin === "tomato") {
         canvas.drawImage(left_tomatoImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "viking") {
+        canvas.drawImage(left_vikingImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "pink_dude") {
+        canvas.drawImage(left_pink_dudeImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "white_dude") {
+        canvas.drawImage(left_white_dudeImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "blue_dude") {
+        canvas.drawImage(left_blue_dudeImage, player.x - cameraX, player.y - cameraY)
       } else {
         canvas.drawImage(left_red_santaImage, player.x - cameraX, player.y - cameraY)
       }
@@ -141,6 +169,14 @@ function loop() {
         canvas.drawImage(right_bananaImage, player.x - cameraX, player.y - cameraY)
       } else if (player.skin === "tomato") {
         canvas.drawImage(right_tomatoImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "viking") {
+        canvas.drawImage(right_vikingImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "pink_dude") {
+        canvas.drawImage(right_pink_dudeImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "white_dude") {
+        canvas.drawImage(right_white_dudeImage, player.x - cameraX, player.y - cameraY)
+      } else if (player.skin === "blue_dude") {
+        canvas.drawImage(right_blue_dudeImage, player.x - cameraX, player.y - cameraY)
       } else {
         canvas.drawImage(right_red_santaImage, player.x - cameraX, player.y - cameraY)
       }
